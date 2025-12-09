@@ -102,3 +102,51 @@
 
 (define (cbrt x)
   (cbrt-iter 1.0 x))
+
+;; Exercise 1.9
+
+(define (inc n) (- n (- 0 1)))
+(define (dec n) (- n 1))
+
+;; recursive procedure and recursive process
+;; (define (+ a b)
+;;   (if (= a 0) b (inc (+ (dec a) b))))
+
+;; recursive procedure and iterative process
+;; (define (+ a b)
+;;   (if (= a 0) b (+ (dec a) (inc b))))
+
+;; Exercise 1.10 - Ackermann's function
+
+(define (A x y)
+  (cond ((= y 0) 0)
+        ((= x 0) (* 2 y))
+        ((= y 1) 2)
+        (else (A (- x 1) (A x (- y 1))))))
+
+;; (= (A 1 10) 1024)
+;; (= (A 2 4) 65536)
+;; (= (A 3 3) 65536)
+
+(define (f n) (A 0 n))    ;; f(n) = 2n
+(define (g n) (A 1 n))    ;; g(n) = 2 ** n
+(define (h n) (A 2 n))    ;; h(n) = 2 \uparrow\uparrow n
+(define (k n) (* 5 n n))  ;; k(n) = 5n^2
+
+;; Fibonacci - tree recursive
+
+(define (fib-recur n)
+  (cond ((= n 0) 0)
+        ((= n 1) 1)
+        (else (+ (fib-recur (- n 1))
+                 (fib-recur (- n 2))))))
+
+;; Fibonacci - iterative
+
+(define (fib-iter a b count)
+  (if (= count 0)
+      b
+      (fib-iter (+ a b) a (- count 1))))
+
+(define (fib n)
+  (fib-iter 1 0 n))
