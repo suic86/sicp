@@ -1,3 +1,5 @@
+;; -*- geiser-scheme-implementation: guile -*-
+
 ;; Exercise 1.1
 
 10                                   ;; 10
@@ -150,3 +152,39 @@
 
 (define (fib n)
   (fib-iter 1 0 n))
+
+;; Example: Counting change
+
+(define (count-change amount) (cc amount 5))
+(define (cc amount kinds-of-coins)
+  (cond ((= amount 0) 1)
+        ((or (< amount 0) (= kinds-of-coins 0)) 0)
+        (else (+ (cc amount
+                     (- kinds-of-coins 1))
+                 (cc (- amount
+                        (first-denomination
+                         kinds-of-coins))
+                     kinds-of-coins)))))
+(define (first-denomination kinds-of-coins)
+  (cond ((= kinds-of-coins 1) 1)
+        ((= kinds-of-coins 2) 5)
+        ((= kinds-of-coins 3) 10)
+        ((= kinds-of-coins 4) 25)
+        ((= kinds-of-coins 5) 50)))
+
+;; Exercise 1.11
+
+(define (fun-rec n)
+  (if (< n 3)
+      n
+      (+ (fun-rec (- n 1))
+         (* 2 (fun-rec (- n 2)))
+         (* 3 (fun-rec (- n 3))))))
+
+
+(define (fun n)
+  (define (fun-iter m c b a)
+    (if (= n m) c
+        (fun-iter (+ m 1) (+ (* 3 a) (* 2 b) c) c b)))
+  (if (< n 3) n
+      (fun-iter 2 2 1 0)))
