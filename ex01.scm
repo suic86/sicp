@@ -188,3 +188,19 @@
         (fun-iter (+ m 1) (+ (* 3 a) (* 2 b) c) c b)))
   (if (< n 3) n
       (fun-iter 2 2 1 0)))
+
+;; Exercise 1.12
+
+(define (n-over-k n k)
+  (if (> k n)
+      (throw 'invalid-argument "n must be less than equal to k")
+      (cond ((= n 0) 1)
+            ((= k 0) 1)
+            ((= k n) 1)
+            (else (+
+                   (n-over-k (- n 1) k)
+                   (n-over-k (- n 1) (- k 1)))))))
+
+;; Exercise 1.13
+;;
+;; Skipped for now.
