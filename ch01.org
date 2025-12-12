@@ -1,10 +1,11 @@
 #+title: Chapter 01
-#+options: num:nil
+#+options: num:nil tex:t
+#+HTML_MATHJAX: align:left
 #+export_file_name: exports/ch01.html
 
 * Exercise 1.1
-
-#+begin_src scheme
+# :session *geiser-guile*
+#+begin_src scheme :session *geiser-guile* 
 10                                   ;; 10
 (+ 5 3 4)                            ;; 12
 (- 9 1)                              ;; 8
@@ -26,7 +27,7 @@
 
 * Exercise 1.2
 
-#+begin_src scheme
+#+begin_src scheme :session *geiser-guile*
 ;; (5 + 4 + (2 - (3 - (6 + 4/5)))) / (3 * (6 - 2) * (2 - 7))
 (/ (+ 5 4 (- 2 (- 3 (+ 6 (/ 4 5)))))
 (* 3 (- 6 2) (- 2 7))) ;; -37/150
@@ -34,7 +35,7 @@
 
 * Exercise 1.3
 
-#+begin_src scheme
+#+begin_src scheme :session *geiser-guile*
 (define (square x) (* x x))
 (define (sum-of-squares x y)
   (+ (square x) (square y)))
@@ -46,14 +47,14 @@
 
 * Exercise 1.4
 
-#+begin_src scheme
+#+begin_src scheme :session *geiser-guile*
 (define (a-plus-abs-b a b)
   ((if (> b 0) + -) a b))
 #+end_src
 
 * Exercise 1.5
 
-#+begin_src scheme
+#+begin_src scheme :session *geiser-guile*
 (define (p) (p))
 (define (test x y)
   (if (= x 0) 0 y))
@@ -63,7 +64,7 @@
 
 * Example 1.1.7
 
-#+begin_src scheme
+#+begin_src scheme :session *geiser-guile*
 (define (sqrt-iter guess x)
   (if (good-enough? guess x)
       guess
@@ -86,7 +87,7 @@
 #+end_src
 
 * Example 1.2.1: Factorial
-#+begin_src scheme
+#+begin_src scheme :session *geiser-guile*
 (define (factorial n)
   (define (factorial-iter total counter)
     (if (= counter n)
@@ -96,7 +97,7 @@
 #+end_src
 
 * Exercise 1.6
-#+begin_src scheme
+#+begin_src scheme :session *geiser-guile* 
 (define (new-if predicate then-clause else-clause)
   (cond (predicate then-clause)
         (else else-clause)))
@@ -108,12 +109,12 @@
 #+end_src
 
 * Exercise 1.7
-#+begin_src scheme
+#+begin_src scheme :session *geiser-guile*
 ;; Skipped for now.
 #+end_src
 
 * Exercise 1.8
-#+begin_src scheme
+#+begin_src scheme :session *geiser-guile*
 
 (define (improve-cube guess x)
   (/ (+ (/ x (square guess)) (* 2 guess)) 3))
@@ -135,7 +136,7 @@
 
 * Exercise 1.9
 
-#+begin_src scheme
+#+begin_src scheme :session *geiser-guile*
 (define (inc n) (- n (- 0 1)))
 (define (dec n) (- n 1))
 
@@ -150,7 +151,7 @@
 
 * Exercise 1.10 - Ackermann's function
 
-#+begin_src scheme
+#+begin_src scheme :session *geiser-guile*
 (define (A x y)
   (cond ((= y 0) 0)
         ((= x 0) (* 2 y))
@@ -186,7 +187,7 @@
 #+end_src
 
 * Example: Counting change
-#+begin_src scheme
+#+begin_src scheme :session *geiser-guile*
 (define (count-change amount) (cc amount 5))
 (define (cc amount kinds-of-coins)
   (cond ((= amount 0) 1)
@@ -207,7 +208,7 @@
 
 * Exercise 1.11
 
-#+begin_src scheme
+#+begin_src scheme :session *geiser-guile*
 (define (fun-rec n)
   (if (< n 3)
       n
@@ -225,7 +226,7 @@
 
 * Exercise 1.12
 
-#+begin_src scheme
+#+begin_src scheme :session *geiser-guile*
 (define (n-over-k n k)
   (if (> k n)
       (throw 'invalid-argument "n must be less than equal to k")
@@ -238,18 +239,17 @@
 #+end_src
 
 * Exercise 1.13
-#+begin_src scheme
+#+begin_src scheme :session *geiser-guile*
 ;; Skipped for now.
 #+end_src
 
 * Exercise 1.14
-#+begin_src scheme
+#+begin_src scheme :session *geiser-guile*
 ;; Skipped for now.
 #+end_src
 
 * Exercise 1.15
-
-#+begin_src scheme
+#+begin_src scheme :session *geiser-guile*
 (define (cube x) (* x x x))
 (define (p x) (- (* 3 x) (* 4 (cube x))))
 (define (sine angle)
